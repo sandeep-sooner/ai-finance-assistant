@@ -23,6 +23,7 @@ The full design rationale is in [docs/TECHNICAL_DESIGN.md](docs/TECHNICAL_DESIGN
 - [Tests and evals](#tests-and-evals)
 - [Tracing with LangSmith (optional)](#tracing-with-langsmith-optional)
 - [MCP server (Claude Desktop)](#mcp-server-claude-desktop)
+- [Deployment](#deployment)
 - [Project structure](#project-structure)
 - [Technology choices](#technology-choices)
 - [Troubleshooting](#troubleshooting)
@@ -321,6 +322,30 @@ restart Claude Desktop:
 
 The server reads the same `.env` and `config.yaml`. The tools are covered by unit tests; the connection to
 Claude Desktop itself has not been tested on this machine.
+
+## Deployment
+
+One Docker image serves the API and the built React UI on a single port: the [Dockerfile](Dockerfile)
+builds the front end with Node, then runs uvicorn on `$PORT` (the port Render, Railway and Fly inject).
+
+**Render (free tier)**
+
+1. On [render.com](https://render.com), choose **New → Blueprint** and select this repository.
+   [render.yaml](render.yaml) defines the service, its health check (`/api/health`) and cost-safe defaults.
+2. Enter `OPENAI_API_KEY` when prompted (optionally `ALPHAVANTAGE_API_KEY`). Keys live only in Render.
+3. Deploy. Every push to `main` redeploys automatically.
+
+Before sharing a public URL, set a monthly spending limit on the OpenAI account. The blueprint already
+uses `gpt-4o-mini` for both model tiers and low per-client rate limits; set `LLM_PROVIDER=fake` for a demo
+that makes no API calls at all. On the free tier the service sleeps after ~15 minutes idle, so the first
+request after that takes 30-60 seconds.
+
+**Any Docker host**
+
+```bash
+docker build -t ai-finance-assistant .
+docker run -p 8000:8000 --env-file .env ai-finance-assistant   # http://localhost:8000
+```
 
 ## Project structure
 

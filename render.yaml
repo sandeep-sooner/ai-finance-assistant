@@ -1,0 +1,41 @@
+# Render Blueprint: New -> Blueprint -> pick this repo.
+# Secrets are NOT stored here; Render asks for any value marked `sync: false` during setup.
+services:
+  - type: web
+    name: ai-finance-assistant
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      # --- secrets (entered in the Render dashboard) ---
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ALPHAVANTAGE_API_KEY      # optional: steadier live quotes than yfinance on cloud IPs
+        sync: false
+
+      # --- model + cost controls for a public demo ---
+      - key: LLM_PROVIDER
+        value: openai                  # set to "fake" for a free demo with canned answers
+      - key: LLM_FAST_MODEL
+        value: gpt-4o-mini
+      - key: LLM_SMART_MODEL
+        value: gpt-4o-mini             # keep the public demo cheap; switch to gpt-4o if you want
+      - key: LLM_CALLS_PER_MIN
+        value: "20"
+      - key: CHAT_REQUESTS_PER_MIN
+        value: "6"
+      - key: API_REQUESTS_PER_MIN
+        value: "60"
+      - key: MAX_MESSAGE_CHARS
+        value: "1000"
+
+      # --- market data ---
+      - key: MARKET_DATA_PROVIDER
+        value: yfinance
+      - key: MARKET_QUOTE_TTL
+        value: "300"
+
+      - key: LOG_LEVEL
+        value: INFO

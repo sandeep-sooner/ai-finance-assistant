@@ -1,0 +1,30 @@
+# Secrets
+.env
+.env.*
+!.env.example
+chat/.env.local
+
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.cache/
+
+# Front end build artefacts (rebuilt inside the image)
+chat/node_modules/
+chat/dist/
+
+# Not needed at runtime
+.git/
+.github/
+.vscode/
+.idea/
+.claude/
+tests/
+evals/
+docs/
+*.log
