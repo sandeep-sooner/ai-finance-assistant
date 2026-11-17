@@ -1,0 +1,20 @@
+{
+  "note": "Illustrative portfolios for demos, tests and evals. Not recommendations.",
+  "portfolios": [
+    {"id": "tech_heavy", "name": "Tech-heavy stock picker", "description": "Concentrated in a few large technology stocks.",
+     "holdings": [{"symbol": "AAPL", "shares": 40, "avg_cost": 150}, {"symbol": "MSFT", "shares": 15, "avg_cost": 300},
+                  {"symbol": "NVDA", "shares": 60, "avg_cost": 45}, {"symbol": "GOOGL", "shares": 20, "avg_cost": 120}]},
+    {"id": "three_fund", "name": "Three-fund index portfolio", "description": "Broad US stocks, international stocks and bonds.",
+     "holdings": [{"symbol": "VTI", "shares": 60, "avg_cost": 210}, {"symbol": "VXUS", "shares": 90, "avg_cost": 55},
+                  {"symbol": "BND", "shares": 110, "avg_cost": 75}]},
+    {"id": "starter_mix", "name": "Beginner mix", "description": "One broad fund plus a few individual stocks.",
+     "holdings": [{"symbol": "VOO", "shares": 12, "avg_cost": 400}, {"symbol": "AAPL", "shares": 8, "avg_cost": 170},
+                  {"symbol": "JNJ", "shares": 10, "avg_cost": 155}, {"symbol": "KO", "shares": 25, "avg_cost": 58},
+                  {"symbol": "BND", "shares": 30, "avg_cost": 74}]},
+    {"id": "income", "name": "Income-focused", "description": "Bond funds and dividend payers.",
+     "holdings": [{"symbol": "BND", "shares": 150, "avg_cost": 76}, {"symbol": "VYM", "shares": 80, "avg_cost": 105},
+                  {"symbol": "VNQ", "shares": 30, "avg_cost": 88}, {"symbol": "JNJ", "shares": 15, "avg_cost": 150}]},
+    {"id": "single_stock", "name": "Single stock", "description": "Everything in one company: the extreme concentration case.",
+     "holdings": [{"symbol": "TSLA", "shares": 50, "avg_cost": 210}]}
+  ]
+}

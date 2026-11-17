@@ -1,0 +1,765 @@
+/* ChatTab styles. Scoped under .fa-chat so nothing leaks into the rest of the app.
+   Optional font: npm i @fontsource-variable/instrument-sans
+   then import "@fontsource-variable/instrument-sans" once in main.tsx. */
+
+.fa-chat {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #13202c;
+  --muted: #5e6e7e;
+  --line: #e1e6ec;
+  --accent: #2457d6;
+  --accent-ink: #ffffff;
+  --user-bg: #e6edfb;
+  --danger: #b42318;
+
+  --agent-qa: #2457d6;
+  --agent-portfolio: #0f8a6d;
+  --agent-market: #c26a00;
+  --agent-goal: #8a3fbf;
+  --agent-news: #b8326b;
+  --agent-tax: #5c7a12;
+  --agent-other: #5e6e7e;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  position: relative;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Instrument Sans Variable", "Instrument Sans", ui-sans-serif, system-ui,
+    -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+@media (prefers-color-scheme: dark) {
+  .fa-chat {
+    --bg: #0f151b;
+    --surface: #17202a;
+    --ink: #e8edf2;
+    --muted: #93a1af;
+    --line: #263340;
+    --accent: #7ea2ff;
+    --accent-ink: #0b1220;
+    --user-bg: #1e2b44;
+    --danger: #ff8a7a;
+
+    --agent-qa: #7ea2ff;
+    --agent-portfolio: #4fd1ae;
+    --agent-market: #f0a14a;
+    --agent-goal: #c79bf0;
+    --agent-news: #f28bb5;
+    --agent-tax: #a9cf5a;
+    --agent-other: #93a1af;
+  }
+}
+
+.fa-chat svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fa-chat button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.fa-chat :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Header ---------- */
+
+.fa-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 20px 0;
+}
+
+.fa-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.fa-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 14px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.fa-ghost:hover:not(:disabled) {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.fa-ghost:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* ---------- Conversation ---------- */
+
+.fa-log {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 28px 20px 12px;
+  scroll-behavior: auto;
+}
+
+.fa-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.fa-msg {
+  min-width: 0;
+}
+
+.fa-msg--user {
+  align-self: flex-end;
+  max-width: 85%;
+  padding: 10px 16px;
+  background: var(--user-bg);
+  border-radius: 18px 18px 6px 18px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.fa-msg--assistant {
+  align-self: stretch;
+}
+
+.fa-agent {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.fa-agent-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--agent-other);
+}
+
+.fa-agent[data-agent="finance_qa"] .fa-agent-dot { background: var(--agent-qa); }
+.fa-agent[data-agent="portfolio"] .fa-agent-dot { background: var(--agent-portfolio); }
+.fa-agent[data-agent="market"] .fa-agent-dot { background: var(--agent-market); }
+.fa-agent[data-agent="goal_planning"] .fa-agent-dot { background: var(--agent-goal); }
+.fa-agent[data-agent="news"] .fa-agent-dot { background: var(--agent-news); }
+.fa-agent[data-agent="tax"] .fa-agent-dot { background: var(--agent-tax); }
+
+.fa-agents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.fa-body {
+  max-width: 68ch;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+/* Markdown rendered from agent replies */
+.fa-body > :first-child { margin-top: 0; }
+.fa-body > :last-child { margin-bottom: 0; }
+.fa-body p,
+.fa-body ul,
+.fa-body ol,
+.fa-body pre,
+.fa-body table,
+.fa-body blockquote { margin: 0 0 0.8em; }
+.fa-body ul,
+.fa-body ol { padding-left: 1.4em; }
+.fa-body li + li { margin-top: 0.25em; }
+.fa-body h1,
+.fa-body h2,
+.fa-body h3,
+.fa-body h4 {
+  margin: 1.1em 0 0.4em;
+  font-size: 1.05em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.fa-body a { color: var(--accent); }
+.fa-body code {
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 0.9em;
+}
+.fa-body pre {
+  overflow-x: auto;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.fa-body pre code { padding: 0; border: 0; }
+.fa-body blockquote {
+  padding-left: 12px;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+}
+.fa-body table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.93em;
+  font-variant-numeric: tabular-nums;
+}
+.fa-body th,
+.fa-body td {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+
+.fa-msg-disclaimer {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.fa-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--accent);
+  animation: fa-blink 1s steps(2, start) infinite;
+}
+
+.fa-dots {
+  display: inline-flex;
+  gap: 5px;
+  padding: 8px 0;
+}
+
+.fa-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: fa-bounce 1.1s ease-in-out infinite;
+}
+
+.fa-dots span:nth-child(2) { animation-delay: 0.15s; }
+.fa-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+.fa-failed {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--danger);
+}
+
+/* ---------- Sources ---------- */
+
+.fa-sources {
+  margin-top: 14px;
+}
+
+.fa-sources-label {
+  display: inline-block;
+  padding: 2px 0;
+  font-size: 13px;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.fa-sources-label:hover {
+  color: var(--ink);
+}
+
+.fa-sources ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+.fa-source-cat {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.fa-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a.fa-source:hover {
+  border-color: var(--accent);
+}
+
+.fa-source-n {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Message actions ---------- */
+
+.fa-actions {
+  margin-top: 8px;
+  margin-left: -8px;
+}
+
+@media (hover: hover) {
+  .fa-msg--assistant .fa-actions {
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+  .fa-msg--assistant:hover .fa-actions,
+  .fa-msg--assistant:focus-within .fa-actions {
+    opacity: 1;
+  }
+}
+
+.fa-actions .fa-ghost {
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+/* ---------- Empty state ---------- */
+
+.fa-empty {
+  padding: 8vh 0 0;
+}
+
+.fa-empty h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.fa-empty p {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+
+.fa-starters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fa-starter {
+  padding: 9px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 14.5px;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.fa-starter:hover {
+  border-color: var(--accent);
+}
+
+.fa-starter:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Composer ---------- */
+
+.fa-dock {
+  position: relative;
+  padding: 8px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+}
+
+.fa-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 auto 10px;
+  padding: 10px 14px;
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--danger) 9%, var(--surface));
+  font-size: 14.5px;
+}
+
+.fa-error button {
+  padding: 4px 12px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--danger);
+  font-size: 14px;
+}
+
+.fa-composer {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8px 8px 8px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  box-shadow: 0 8px 24px -14px rgba(19, 32, 44, 0.28);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.fa-composer:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent),
+    0 8px 24px -14px rgba(19, 32, 44, 0.28);
+}
+
+.fa-input {
+  flex: 1;
+  min-width: 0;
+  max-height: 160px;
+  padding: 9px 0;
+  border: 0;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  line-height: 1.45;
+}
+
+/* The composer already shows a focus ring (.fa-composer:focus-within), so the
+   textarea itself must not draw the generic .fa-chat :focus-visible outline. */
+.fa-chat .fa-input,
+.fa-chat .fa-input:focus,
+.fa-chat .fa-input:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: 0;
+  margin: 0;
+  min-height: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.fa-input::placeholder {
+  color: var(--muted);
+}
+
+.fa-send {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.fa-send:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.fa-send:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.fa-disclaimer {
+  max-width: 720px;
+  margin: 10px auto 0;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.fa-jump {
+  position: absolute;
+  top: -44px;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  transform: translateX(-50%);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 4px 14px -6px rgba(19, 32, 44, 0.35);
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes fa-blink {
+  to { visibility: hidden; }
+}
+
+@keyframes fa-bounce {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+  40% { transform: translateY(-4px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-caret,
+  .fa-dots span {
+    animation: none;
+  }
+  .fa-send,
+  .fa-starter {
+    transition: none;
+  }
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 600px) {
+  .fa-head { padding: 10px 14px; }
+  .fa-log { padding: 20px 14px 8px; }
+  .fa-dock { padding-left: 12px; padding-right: 12px; }
+  .fa-msg--user { max-width: 92%; }
+}
+/* ====================== Modern layer (hero, agent cards, answer meta) ====================== */
+
+.fa-head {
+  justify-content: space-between;
+  padding: 14px 24px 0;
+}
+
+.fa-level {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--track, var(--line));
+}
+
+.fa-level-opt {
+  height: 28px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.fa-level-opt[aria-checked="true"] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.16);
+}
+
+.fa-thread { max-width: 820px; }
+
+.fa-empty { padding: 5vh 0 0; }
+
+.fa-eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.fa-empty h2 {
+  max-width: 17em;
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  font-weight: 680;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.fa-empty h2 em {
+  font-style: normal;
+  background: linear-gradient(100deg, var(--accent), var(--accent-2, var(--accent)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.fa-empty p { max-width: 36em; font-size: 1.05rem; }
+
+.fa-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.fa-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+  padding: 15px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  text-align: left;
+  box-shadow: var(--shadow, none);
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.fa-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--card-color, var(--accent));
+  box-shadow: var(--shadow-lg, none);
+}
+
+.fa-card:active { transform: translateY(0); }
+
+.fa-card[data-agent="finance_qa"] { --card-color: var(--agent-qa); }
+.fa-card[data-agent="portfolio"] { --card-color: var(--agent-portfolio); }
+.fa-card[data-agent="market"] { --card-color: var(--agent-market); }
+.fa-card[data-agent="goal_planning"] { --card-color: var(--agent-goal); }
+.fa-card[data-agent="news"] { --card-color: var(--agent-news); }
+.fa-card[data-agent="tax"] { --card-color: var(--agent-tax); }
+
+.fa-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+}
+
+.fa-card-dot {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--card-color, var(--accent));
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--card-color, var(--accent)) 18%, transparent);
+}
+
+.fa-card-hint { color: var(--muted); font-size: 13px; }
+
+.fa-card-prompt {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Messages */
+
+.fa-msg--user {
+  border-radius: 18px 18px 6px 18px;
+}
+
+.fa-agent {
+  padding: 3px 10px 3px 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+}
+
+.fa-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin-top: 12px;
+}
+
+.fa-meta-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.fa-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--track, var(--line));
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 550;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.fa-chip[data-tone="fast"] { background: var(--ok-bg, var(--line)); color: var(--ok, var(--ink)); }
+.fa-chip[data-tone="smart"] { background: var(--accent-soft, var(--line)); color: var(--accent); }
+.fa-chip[data-tone="ok"] { background: var(--ok-bg, var(--line)); color: var(--ok, var(--ink)); }
+.fa-chip[data-tone="warn"] { background: var(--warn-bg, var(--line)); color: var(--warn, var(--ink)); }
+
+/* Composer */
+
+.fa-composer {
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg, none);
+}
+
+.fa-send {
+  background: linear-gradient(135deg, var(--accent), color-mix(in oklab, var(--accent) 60%, var(--accent-2, var(--accent))));
+}
+
+@media (max-width: 900px) {
+  .fa-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+  .fa-cards { grid-template-columns: 1fr; }
+  .fa-card-prompt { display: none; }
+  .fa-head { padding: 10px 14px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-card { transition: none; }
+}

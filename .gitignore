@@ -1,0 +1,31 @@
+# Secrets (keep the template)
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Generated caches (FAISS index, LLM/market caches) - rebuilt at runtime
+.cache/
+
+# Front end
+node_modules/
+chat/dist/
+
+# Logs
+*.log
+
+# Editor / tool settings
+.vscode/
+.idea/
+.claude/
+.DS_Store
+Thumbs.db

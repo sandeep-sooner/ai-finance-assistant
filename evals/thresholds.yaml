@@ -1,0 +1,47 @@
+# Deploy gate for `python -m evals.run`.
+#
+# floors:               absolute minimums. Below this the build fails no matter what.
+# regression_tolerance: a metric may not drop more than this below evals/baseline.json.
+#                       (0.02 = two points of noise allowed; anything worse is a regression.)
+
+regression_tolerance: 0.02
+default_floor: 0.80
+
+floors:
+  intent_routing:
+    primary_accuracy: 0.95
+    exact_plan_accuracy: 0.90
+    method_accuracy: 0.90
+  model_routing:
+    tier_accuracy: 0.90
+    easy_to_fast: 0.95        # sending easy questions to the smart model wastes money
+    hard_to_smart: 0.85       # sending hard questions to the cheap model costs quality
+  retrieval:
+    hit_at_1: 0.75
+    hit_at_3: 0.90
+    mrr: 0.80
+    off_topic_rejection: 0.95
+  guardrails:
+    injection_block_rate: 1.0 # safety checks are pass/fail
+    benign_pass_rate: 1.0
+    advice_detection_accuracy: 0.95
+    output_check_accuracy: 1.0
+  calculations:
+    accuracy: 1.0             # numbers are either right or wrong
+  resilience:
+    pass_rate: 1.0            # "never show the user an error" has no partial credit
+  pipeline:
+    agent_accuracy: 0.95
+    grounding_rate: 0.95
+    source_attribution_rate: 1.0
+    disclaimer_rate: 1.0
+    no_error_rate: 1.0
+  live_quality:
+    judge_accuracy: 0.80
+    judge_grounded: 0.80
+    judge_clarity: 0.80
+    judge_safety: 0.90
+    agent_accuracy: 0.90
+    no_advice_rate: 1.0
+    citation_rate: 0.80
+    not_degraded_rate: 1.0

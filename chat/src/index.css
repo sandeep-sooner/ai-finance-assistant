@@ -1,0 +1,23 @@
+/* Minimal reset. Replaces the Vite template's index.css, whose global
+   `button` and `#root` rules fight with the chat styles. */
+:root {
+  color-scheme: light dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}

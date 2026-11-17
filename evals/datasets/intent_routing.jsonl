@@ -1,0 +1,48 @@
+{"q": "What is an ETF?", "intents": ["finance_qa"]}
+{"q": "Explain compound interest with an example", "intents": ["finance_qa"]}
+{"q": "What's the difference between a stock and a bond?", "intents": ["finance_qa"]}
+{"q": "How does diversification reduce risk?", "intents": ["finance_qa"]}
+{"q": "What is an expense ratio?", "intents": ["finance_qa"]}
+{"q": "What does dollar-cost averaging mean?", "intents": ["finance_qa"]}
+{"q": "Are index funds better than active funds?", "intents": ["finance_qa"]}
+{"q": "what is a p/e ratio", "intents": ["finance_qa"]}
+{"q": "Analyze my portfolio: 10 AAPL, 5 VTI, 20 BND", "intents": ["portfolio"]}
+{"q": "I own 12 MSFT and 30 VOO, how diversified am I?", "intents": ["portfolio"]}
+{"q": "Can you review my holdings? 50 TSLA", "intents": ["portfolio"]}
+{"q": "Is this portfolio too concentrated: 40 NVDA, 10 AAPL", "intents": ["portfolio"]}
+{"q": "I hold 100 shares of KO and 20 JNJ", "intents": ["portfolio"]}
+{"q": "analyse my portfolio please", "intents": ["portfolio"]}
+{"q": "What is AAPL trading at?", "intents": ["market"]}
+{"q": "price of Tesla right now", "intents": ["market"]}
+{"q": "How is the market today?", "intents": ["market"]}
+{"q": "$NVDA", "intents": ["market"]}
+{"q": "What's the share price of Microsoft?", "intents": ["market"]}
+{"q": "How is SPY doing?", "intents": ["market"]}
+{"q": "Give me a quote for GOOGL", "intents": ["market"]}
+{"q": "how did the nasdaq do", "intents": ["market"]}
+{"q": "I want to save $50,000 in 10 years and can add $300 a month", "intents": ["goal_planning"]}
+{"q": "How much do I need to retire at 60?", "intents": ["goal_planning"]}
+{"q": "Help me plan my savings for a house down payment", "intents": ["goal_planning"]}
+{"q": "I have a financial goal of 1 million in 25 years", "intents": ["goal_planning"]}
+{"q": "Can I save 20k in 3 years with 400 per month?", "intents": ["goal_planning"]}
+{"q": "Set up a savings goal for my kid's college", "intents": ["goal_planning"]}
+{"q": "Any news on NVDA?", "intents": ["news"]}
+{"q": "What are today's market headlines?", "intents": ["news"]}
+{"q": "Latest news about Apple", "intents": ["news"]}
+{"q": "Summarize the headlines for Tesla", "intents": ["news"]}
+{"q": "How is a Roth IRA taxed?", "intents": ["tax"]}
+{"q": "What are capital gains taxes?", "intents": ["tax"]}
+{"q": "Explain tax-loss harvesting", "intents": ["tax"]}
+{"q": "How does a 401(k) match work?", "intents": ["tax"]}
+{"q": "Is ELSS better than PPF for saving tax?", "intents": ["tax"]}
+{"q": "Are dividends taxable?", "intents": ["tax"]}
+{"q": "What is an HSA?", "intents": ["tax"]}
+{"q": "Analyze my portfolio: 40 AAPL, 15 MSFT and what are the tax implications if I sell?", "intents": ["portfolio", "tax"]}
+{"q": "What's the price of AAPL and any news about it?", "intents": ["news", "market"]}
+{"q": "I want to retire in 20 years, how are 401k withdrawals taxed?", "intents": ["goal_planning", "tax"]}
+{"q": "and what about its fees?", "previous": "portfolio", "intents": ["portfolio"], "method": "follow_up"}
+{"q": "why is that?", "previous": "tax", "intents": ["tax"], "method": "follow_up"}
+{"q": "ok and how has it done this month?", "previous": "market", "intents": ["market"], "method": "follow_up"}
+{"q": "What is a bond and how does it work?", "previous": "market", "intents": ["finance_qa"], "method": "default"}
+{"q": "tell me more", "previous": "goal_planning", "intents": ["goal_planning"], "method": "follow_up"}
+{"q": "What is rebalancing?", "previous": "portfolio", "intents": ["finance_qa"], "method": "default"}

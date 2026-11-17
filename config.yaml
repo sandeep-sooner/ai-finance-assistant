@@ -1,0 +1,64 @@
+# AI Finance Assistant configuration.
+# Every value here can be overridden by the environment variable named in the comment
+# (env wins), so secrets and per-deploy tweaks never need a code or YAML change.
+
+llm:
+  provider: auto            # LLM_PROVIDER: openai | gemini | fake | auto (pick by which API key is set)
+  temperature: 0.3          # LLM_TEMPERATURE
+  calls_per_min: 50         # LLM_CALLS_PER_MIN: global cap, keep under your key's rate limit
+  # Model tiers. The model router sends easy questions to `fast` and hard ones to `smart`.
+  tiers:
+    fast:                   # LLM_FAST_MODEL (or legacy LLM_MODEL)
+      openai: gpt-4o-mini
+      gemini: gemini-2.0-flash
+    smart:                  # LLM_SMART_MODEL
+      openai: gpt-4o
+      gemini: gemini-2.5-pro
+  # Rough USD prices per 1M tokens, used only for the cost estimate on the System tab.
+  pricing:
+    gpt-4o-mini: {input: 0.15, output: 0.60}
+    gpt-4o: {input: 2.50, output: 10.00}
+    gemini-2.0-flash: {input: 0.10, output: 0.40}
+    gemini-2.5-pro: {input: 1.25, output: 10.00}
+
+model_router:
+  smart_threshold: 0.5      # MODEL_ROUTER_THRESHOLD: complexity score at or above this goes to `smart`
+  llm_intent_fallback: true # ROUTER_LLM_FALLBACK: ask the fast model to classify when no rule matches
+
+resilience:
+  retries: 2                # LLM_RETRIES: extra attempts per model before switching model
+  backoff_base: 0.5         # LLM_BACKOFF_BASE: seconds, doubled each attempt, plus jitter
+  token_timeout: 30         # LLM_TOKEN_TIMEOUT: seconds to wait for the next token before giving up
+  breaker_failures: 3       # consecutive failures that open a model's circuit breaker
+  breaker_cooldown: 60      # seconds a tripped model is skipped
+
+cache:
+  llm_ttl: 3600             # LLM_CACHE_TTL: seconds an LLM answer is reused for an identical prompt (0 = off)
+  llm_max_items: 1000
+  retrieval_max_items: 500
+
+rag:
+  embedder: auto            # RAG_EMBEDDER: openai | local | auto (openai when a key is set, else local)
+  embedding_model: text-embedding-3-small
+  chunk_chars: 600          # articles are ~800 characters, so most become two overlapping chunks
+  chunk_overlap: 100
+  top_k: 4                  # RAG_TOP_K
+  dense_weight: 0.6         # hybrid score = dense_weight * cosine + (1 - dense_weight) * keyword
+  min_score: 0.22           # RAG_MIN_SCORE: chunks below this relevance are not shown to the LLM
+  relative_cut: 0.6         # also drop chunks scoring below 60% of the best match (trims the weak tail)
+  index_dir: .cache/rag
+
+market:
+  provider: yfinance        # MARKET_DATA_PROVIDER: yfinance | alphavantage | sample
+  quote_ttl: 60             # MARKET_QUOTE_TTL: seconds (the course FAQ suggests 1800 on free API tiers)
+  history_ttl: 900
+  news_ttl: 600
+  timeout: 8                # MARKET_TIMEOUT
+  retries: 1                # extra attempts (with backoff) before falling back to cache / sample data
+
+api:
+  chat_requests_per_min: 20 # CHAT_REQUESTS_PER_MIN (per client, LLM endpoints)
+  api_requests_per_min: 120 # API_REQUESTS_PER_MIN (per client, data endpoints)
+  max_history_messages: 10  # MAX_HISTORY_MESSAGES
+  max_message_chars: 2000   # MAX_MESSAGE_CHARS
+  log_level: INFO           # LOG_LEVEL

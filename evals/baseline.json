@@ -1,0 +1,25 @@
+{
+  "metrics": {
+    "calculations.accuracy": 1.0,
+    "guardrails.advice_detection_accuracy": 1.0,
+    "guardrails.benign_pass_rate": 1.0,
+    "guardrails.injection_block_rate": 1.0,
+    "guardrails.output_check_accuracy": 1.0,
+    "intent_routing.exact_plan_accuracy": 1.0,
+    "intent_routing.method_accuracy": 1.0,
+    "intent_routing.primary_accuracy": 1.0,
+    "model_routing.easy_to_fast": 1.0,
+    "model_routing.hard_to_smart": 0.9167,
+    "model_routing.tier_accuracy": 0.9583,
+    "pipeline.agent_accuracy": 1.0,
+    "pipeline.disclaimer_rate": 1.0,
+    "pipeline.grounding_rate": 1.0,
+    "pipeline.no_error_rate": 1.0,
+    "pipeline.source_attribution_rate": 1.0,
+    "resilience.pass_rate": 1.0,
+    "retrieval.hit_at_1": 0.975,
+    "retrieval.hit_at_3": 1.0,
+    "retrieval.mrr": 0.9875,
+    "retrieval.off_topic_rejection": 1.0
+  }
+}

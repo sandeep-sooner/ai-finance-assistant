@@ -1,0 +1,175 @@
+/* Portfolio-specific layout. Shared look lives in ../ui/panel.css. */
+
+.pf-tools { display: flex; gap: 8px; }
+
+.pf-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.pf-grid-head,
+.pf-row {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) minmax(80px, 1fr) minmax(110px, 1.2fr) 34px;
+  gap: 8px;
+  align-items: center;
+}
+
+.pf-grid-head {
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.pf-symbol { text-transform: uppercase; font-weight: 600; }
+
+.pf-row-error {
+  grid-column: 1 / -1;
+  margin: -2px 0 0;
+  color: var(--danger);
+  font-size: 13px;
+}
+
+.pf-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pf-results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scroll-margin-top: 16px;
+}
+
+.pf-sector { display: block; font-size: 12.5px; }
+
+/* Allocation bars: single series, one hue, direct labels. */
+.pf-alloc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.pf-bars { margin: 0; }
+
+.pf-bars figcaption {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.pf-bars ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pf-bars li {
+  display: grid;
+  grid-template-columns: minmax(96px, 40%) 1fr 40px;
+  gap: 10px;
+  align-items: center;
+  font-size: 13.5px;
+}
+
+.pf-bar-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pf-bar-track {
+  height: 10px;
+  border-radius: 4px;
+  background: var(--track);
+}
+
+.pf-bar-fill {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 4px;
+  background: var(--series-portfolio);
+}
+
+.pf-bar-pct {
+  color: var(--muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 760px) {
+  .pf-alloc { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .pf-grid-head { display: none; }
+  .pf-row { grid-template-columns: 1fr 1fr 34px; }
+  .pf-row .pf-cost { grid-column: 1 / 3; grid-row: 2; }
+  .pf-row .ui-icon-btn { grid-row: 1; grid-column: 3; }
+}
+
+/* ---------- Scores (diversification, risk, fund costs) ---------- */
+
+.pf-scores {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pf-score {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.pf-score-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.panel .pf-ring {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  stroke-width: 6;
+}
+
+.pf-ring-track { stroke: var(--track); }
+.pf-ring-value { stroke: var(--accent); stroke-linecap: round; transition: stroke-dasharray 0.6s ease; }
+.pf-score[data-tone="good"] .pf-ring-value { stroke: var(--pos); }
+.pf-score[data-tone="mid"] .pf-ring-value { stroke: var(--warn); }
+.pf-score[data-tone="low"] .pf-ring-value { stroke: var(--neg); }
+
+.pf-ring-text {
+  fill: var(--ink);
+  stroke: none;
+  font-size: 17px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.pf-sample {
+  max-width: 190px;
+  padding-right: 8px;
+  color: var(--ink);
+  background: var(--surface);
+}
+
+@media (max-width: 760px) {
+  .pf-scores { grid-template-columns: 1fr; }
+  .pf-tools { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-ring-value { transition: none; }
+}

@@ -1,0 +1,46 @@
+{"q": "What is an ETF?", "expect": ["funds/what-is-an-etf", "glossary/etf"]}
+{"q": "how does compound interest work", "expect": ["basics/compound-interest", "glossary/compound-interest"]}
+{"q": "should I pay off debt or invest", "expect": ["planning/paying-off-debt-or-investing"]}
+{"q": "what is a roth ira", "expect": ["tax/traditional-ira-and-roth-ira", "glossary/roth-ira"]}
+{"q": "difference between etf and mutual fund", "expect": ["funds/etfs-compared-with-mutual-funds"]}
+{"q": "why do bond prices fall when rates rise", "expect": ["bonds/bond-prices-and-interest-rates"]}
+{"q": "how are dividends taxed", "expect": ["tax/how-dividends-and-interest-are-taxed"]}
+{"q": "what does beta mean", "expect": ["portfolio/volatility-and-beta", "glossary/beta"]}
+{"q": "how big should my emergency fund be", "expect": ["basics/emergency-fund", "glossary/emergency-fund"]}
+{"q": "is crypto a risky investment", "expect": ["markets/cryptocurrency-basics"]}
+{"q": "what is diversification", "expect": ["portfolio/diversification", "glossary/diversification"]}
+{"q": "how often should I rebalance my portfolio", "expect": ["portfolio/rebalancing", "glossary/rebalancing"]}
+{"q": "what is the 4 percent rule for retirement withdrawals", "expect": ["planning/the-4-percent-rule"]}
+{"q": "explain the rule of 72", "expect": ["basics/the-rule-of-72"]}
+{"q": "what is a p/e ratio", "expect": ["stocks/price-to-earnings-p-e-ratio", "glossary/p-e-ratio"]}
+{"q": "what is an expense ratio and why does it matter", "expect": ["funds/expense-ratios", "glossary/expense-ratio"]}
+{"q": "how does a 401k employer match work", "expect": ["tax/401-k-plans-and-the-employer-match"]}
+{"q": "what is tax loss harvesting", "expect": ["tax/tax-loss-harvesting-and-the-wash-sale-rule", "glossary/tax-loss-harvesting"]}
+{"q": "what is a bear market", "expect": ["markets/bull-and-bear-markets", "glossary/bear-market"]}
+{"q": "what are treasury bills and TIPS", "expect": ["bonds/treasury-securities"]}
+{"q": "what is a target date fund", "expect": ["funds/target-date-funds", "glossary/target-date-fund"]}
+{"q": "market order vs limit order", "expect": ["stocks/market-orders-and-limit-orders"]}
+{"q": "what is dollar cost averaging", "expect": ["portfolio/dollar-cost-averaging", "glossary/dollar-cost-averaging"]}
+{"q": "how does the federal reserve affect stocks", "expect": ["markets/interest-rates-and-the-federal-reserve"]}
+{"q": "what is modern portfolio theory", "expect": ["portfolio/modern-portfolio-theory"]}
+{"q": "what is a REIT", "expect": ["funds/real-estate-investment-trusts-reits", "glossary/reit"]}
+{"q": "what is the sharpe ratio", "expect": ["portfolio/the-sharpe-ratio", "glossary/sharpe-ratio"]}
+{"q": "how do credit ratings work for bonds", "expect": ["bonds/credit-ratings", "glossary/credit-rating"]}
+{"q": "what is a 529 plan for college", "expect": ["planning/education-savings-and-529-plans"]}
+{"q": "how does inflation reduce purchasing power", "expect": ["basics/inflation-and-purchasing-power"]}
+{"q": "what is market capitalization", "expect": ["stocks/market-capitalization", "glossary/market-capitalization"]}
+{"q": "is it possible to time the market", "expect": ["markets/market-timing"]}
+{"q": "what is a health savings account", "expect": ["tax/health-savings-accounts"]}
+{"q": "what is the three fund portfolio", "expect": ["portfolio/the-three-fund-portfolio"]}
+{"q": "how do capital gains taxes work", "expect": ["tax/capital-gains-tax", "glossary/capital-gain"]}
+{"q": "what is bond duration", "expect": ["bonds/duration", "glossary/duration"]}
+{"q": "growth stocks versus value stocks", "expect": ["stocks/growth-and-value-stocks"]}
+{"q": "what is the 50/30/20 budget", "expect": ["planning/budgeting-with-the-50-30-20-rule"]}
+{"q": "what happens in a recession", "expect": ["markets/recessions-and-the-business-cycle", "glossary/recession"]}
+{"q": "what is an ISA or PPF account", "expect": ["tax/tax-advantaged-accounts-outside-the-united-states"]}
+{"q": "hi", "expect": []}
+{"q": "thanks!", "expect": []}
+{"q": "write me a poem about cats", "expect": []}
+{"q": "what is the weather in Paris", "expect": []}
+{"q": "how do I bake bread", "expect": []}
+{"q": "who won the world cup", "expect": []}

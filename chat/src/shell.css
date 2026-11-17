@@ -1,0 +1,301 @@
+/* App shell: a sidebar (brand, navigation, live system status, theme switch) and one pane per section.
+   On narrow screens the sidebar turns into a top bar with a scrolling nav row.
+   Colours come from theme.css. */
+
+.app {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  height: 100dvh;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* ---------- Sidebar ---------- */
+
+.app-side {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-height: 0;
+  padding: 20px 14px 16px;
+  border-right: 1px solid var(--line);
+  background: color-mix(in oklab, var(--surface) 70%, var(--bg));
+}
+
+.app-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 6px;
+}
+
+.app-brand-mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border-radius: 11px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--accent-ink);
+  box-shadow: 0 8px 18px -8px var(--accent);
+}
+
+.app-brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.app-brand-name {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.app-brand-sub {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.app svg.app-icon,
+.app-side svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Navigation ---------- */
+
+.app-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.app-nav-label {
+  padding: 0 10px 6px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.app-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  height: 40px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.app-tab:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.app-tab[aria-selected="true"] {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.app-tab[aria-selected="true"]::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 9px;
+  bottom: 9px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--accent);
+}
+
+.app-tab:focus-visible,
+.app-theme:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ---------- Status card ---------- */
+
+.app-status {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: auto;
+  padding: 13px 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  font-size: 12.5px;
+}
+
+.app-status-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.app-dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.app-dot[data-state="ok"] {
+  background: var(--pos);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--pos) 22%, transparent);
+}
+
+.app-dot[data-state="demo"] { background: var(--warn); }
+.app-dot[data-state="down"] { background: var(--neg); }
+
+.app-status dl {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 5px 10px;
+  margin: 0;
+}
+
+.app-status dt { color: var(--muted); }
+
+.app-status dd {
+  margin: 0;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.app-theme {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+
+.app-theme:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+/* ---------- Panes ---------- */
+
+.app-main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--glow), var(--bg);
+}
+
+.app-pane {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.app-pane[hidden] {
+  display: none;
+}
+
+.app-pane > * {
+  flex: 1;
+  min-height: 0;
+}
+
+/* ---------- Small screens: sidebar becomes a top bar ---------- */
+
+@media (max-width: 860px) {
+  .app {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .app-side {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .app-brand-text,
+  .app-nav-label,
+  .app-status,
+  .app-theme span {
+    display: none;
+  }
+
+  .app-nav {
+    flex: 1;
+    flex-direction: row;
+    gap: 2px;
+    min-width: 0;
+    overflow-x: auto;
+  }
+
+  .app-tab {
+    flex: none;
+    height: 36px;
+    padding: 0 11px;
+    font-size: 13.5px;
+  }
+
+  .app-tab[aria-selected="true"]::before {
+    display: none;
+  }
+
+  .app-theme {
+    flex: none;
+    width: 38px;
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .app-tab svg {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-tab {
+    transition: none;
+  }
+}

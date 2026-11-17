@@ -1,0 +1,24 @@
+{"q": "What is an ETF?", "agent": "finance_qa", "tier": "fast"}
+{"q": "Define dividend yield", "agent": "finance_qa", "tier": "fast"}
+{"q": "What does beta mean?", "agent": "finance_qa", "tier": "fast"}
+{"q": "What is AAPL trading at?", "agent": "market", "tier": "fast"}
+{"q": "How is the market today?", "agent": "market", "tier": "fast"}
+{"q": "Any news on NVDA?", "agent": "news", "tier": "fast"}
+{"q": "What is a Roth IRA?", "agent": "tax", "tier": "fast"}
+{"q": "What is an index fund?", "agent": "finance_qa", "tier": "fast"}
+{"q": "Explain what a bond is", "agent": "finance_qa", "tier": "fast"}
+{"q": "How do dividends work?", "agent": "finance_qa", "tier": "fast"}
+{"q": "$SPY", "agent": "market", "tier": "fast"}
+{"q": "What's a limit order?", "agent": "finance_qa", "tier": "fast"}
+{"q": "Compare index funds and actively managed funds: what are the trade-offs, and why do costs matter so much over 30 years?", "agent": "finance_qa", "tier": "smart"}
+{"q": "Why do bond prices fall when interest rates rise, and what are the implications for a retiree versus a 25-year-old?", "agent": "finance_qa", "tier": "smart"}
+{"q": "Compare a traditional IRA versus a Roth IRA and explain which is better for someone whose income will rise", "agent": "tax", "tier": "smart"}
+{"q": "Analyze my portfolio: 40 AAPL @ 150, 15 MSFT @ 300, 60 NVDA @ 45 and explain how I should think about rebalancing", "agent": "portfolio", "tier": "smart"}
+{"q": "What are the tax implications of selling stock I held for 8 months versus 14 months, step by step?", "agent": "tax", "tier": "smart"}
+{"q": "I want to save $80,000 in 7 years with $5,000 saved and $600 a month. What if returns are lower, and what strategy changes should I evaluate?", "agent": "goal_planning", "tier": "smart"}
+{"q": "Walk me through the difference between asset allocation and asset location and why each matters", "agent": "finance_qa", "tier": "smart"}
+{"q": "Should I buy NVDA or put all my money in an index fund? Explain the trade-offs", "agent": "finance_qa", "advice_request": true, "tier": "smart"}
+{"q": "Explain tax-loss harvesting and the wash-sale rule, and what happens if I rebuy within 30 days versus 31 days", "agent": "tax", "tier": "smart"}
+{"q": "Analyze my portfolio and compare its risk with a three-fund strategy: 10 TSLA, 20 QQQ, 5 BND", "agent": "portfolio", "tier": "smart"}
+{"q": "How does inflation affect my retirement plan and why does the target grow?", "agent": "goal_planning", "tier": "smart"}
+{"q": "Summarize the headlines and explain the impact of rate changes on tech stocks versus banks", "agent": "news", "tier": "smart"}
